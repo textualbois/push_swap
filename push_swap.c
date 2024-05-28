@@ -46,7 +46,8 @@ void do_a_2_b_movement(t_stacknode **a_head, t_stacknode **b_head, t_stacknode *
         best_a_node->next->prev = best_a_node->prev;
 
     // If best_a_node was the only node or the top node, update a_head
-    if (best_a_node == *a_head) {
+    if (best_a_node == *a_head) 
+    {
         if (best_a_node->next != best_a_node)
             *a_head = best_a_node->next;
         else
@@ -54,12 +55,15 @@ void do_a_2_b_movement(t_stacknode **a_head, t_stacknode **b_head, t_stacknode *
     }
     
     // Link best_a_node to the top of stack B
-    if (*b_head) {
+    if (*b_head)
+    {
         best_a_node->next = *b_head;
         best_a_node->prev = (*b_head)->prev;
         (*b_head)->prev->next = best_a_node;
         (*b_head)->prev = best_a_node;
-    } else {
+    }
+    else
+    {
         best_a_node->next = best_a_node;
         best_a_node->prev = best_a_node;
     }
