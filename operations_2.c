@@ -1,23 +1,15 @@
 #include "push_swap.h"
 
-t_stacknode *create_new_node(int value) {
-	t_stacknode *node = malloc(sizeof(t_stacknode));
-	if (node == NULL)
-		return (NULL);
-	node->value = value;
-	node->is_top = 0;
-	node->next = NULL;
-	node->prev = NULL;
-	return (node);
+void	insert_after(t_stacknode *current, t_stacknode *new)
+{
+	current->next->prev = new;
+	current->next = new;
+	new->prev = current;
 }
 
-t_stacknode *add_node(int value) {
-	t_stacknode *node = malloc(sizeof(t_stacknode));
-	if (node == NULL)
-		return (NULL);
-	node->value = value;
-	node->is_top = 0;
-	node->next = NULL;
-	node->prev = NULL;
-	return (node);
+void	insert_before(t_stacknode *current, t_stacknode *new)
+{
+	current->prev->next = new;
+	current->prev = new;
+	new->next = current;
 }
