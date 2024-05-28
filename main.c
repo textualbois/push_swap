@@ -4,7 +4,6 @@ int main (int argc, char **argv)
 {
     int *input;
 
-    input = malloc();
     input = parse_check(argc, argv);
     if (input == NULL)
     {
