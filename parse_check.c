@@ -39,10 +39,6 @@ void	pre_parse(int *argc, char ***argv)
 	}
 }
 
-
-
-
-
 int	**map_s_2_i(int argc, char **argv, int offset)
 {
 	int	**res;
