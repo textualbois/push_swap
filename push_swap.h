@@ -10,8 +10,6 @@
 typedef struct s_stacknode{
     int         is_top;
     int         value;
-    int         pos_2_top;
-    int         pos_2_bot;
     t_stacknode *next;
     t_stacknode *prev;
 }	t_stacknode;
