@@ -22,7 +22,7 @@ void        get_pos_alt(int *pos, int val, t_stacknode *head);
 //arr_utils.c
 size_t      ft_arrlen(char **arr);
 void        *clear_arr(char **res_arr);
-void        rm_el(char **arr, int index, int arr_len);
+char        **rm_el(char **arr, int index, int arr_len);
 
 //clear.c
 t_stacknode *clear_list(t_stacknode *head);

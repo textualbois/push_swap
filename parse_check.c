@@ -10,7 +10,7 @@ int *parse_check(int argc, char **argv)
 		return (werror("Error\n", 2));
 	i = 0;
 	res = (int *)malloc(sizeof(int) * argc);
-	if (res != NULL)
+	if (res == NULL)
 	{
 		argv = clear_arr(argv);
 		return (werror("Error\n", 2));
@@ -21,41 +21,46 @@ int *parse_check(int argc, char **argv)
 			res[i] = ft_atoi(argv[i]);
 		else
 		{
+			argv = clear_arr(argv);
 			res = clear_arr(res);
 			return (werror("Error\n", 2));
 		}
-
 	}
+	return (res);
 }
 
 void	pre_parse(int *argc, char ***argv)
 {
 	if (argc > 2)
-		rm_el(*argv, 0, *argc);
+		*argv = rm_el(*argv, 0, *argc);
 	if (*argc == 2)
 	{
 		*argv == ft_split(*argv[1], ' ');
 		*argc = ft_arrlen(*argv);
 	}
+	else
+		*argv = NULL;
 }
 
-int	**map_s_2_i(int argc, char **argv, int offset)
+int		*transform(int argc, char **arr)
 {
-	int	**res;
-	int	arr_i;
+	int	*res;
+	int	i;
 
-	res = malloc((ft_arrlen(argv) + 1) * sizeof(char **));
-	arr_i = 0;
-	while (arr[arr_i] != NULL)
+	res = malloc((ft_arrlen(arr) + 1) * sizeof(int));
+	if (res == NULL)
+		return (NULL);
+	i = 0;
+	while (arr[i] != NULL)
 	{
-		res[arr_i] = f(arr[arr_i], str);
-		if (res[arr_i] == NULL)
+		res[i] = ft_atoi(arr[i]);
+		if (res[i] == NULL)
 		{
 			clear_arr(res);
 			return (NULL);
 		}
-		arr_i++;
+		i++;
 	}
-	res[arr_i] = NULL;
+	res[i] = NULL;
 	return (res);
 }

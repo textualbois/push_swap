@@ -27,7 +27,7 @@ void	*clear_arr(char **res_arr)
 	return (NULL);
 }
 
-void	rm_el(char **arr, int index, int arr_len)
+char	**rm_el(char **arr, int index, int arr_len)
 {
 	int		i;
 	char	**res;
@@ -51,4 +51,5 @@ void	rm_el(char **arr, int index, int arr_len)
 		i++;
 	}
 	res[i] = NULL;
+	return (res);
 }
