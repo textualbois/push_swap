@@ -2,7 +2,9 @@
 
 t_stacknode *create_new_node(int value)
 {
-	t_stacknode *node = malloc(sizeof(t_stacknode));
+	t_stacknode *node;
+	
+	node = malloc(sizeof(t_stacknode));
 	if (node == NULL)
 		return (NULL);
 	node->value = value;
