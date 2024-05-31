@@ -8,11 +8,11 @@
 # define other_task_present 0
 
 typedef struct s_stacknode{
-    int         is_top;
-    int         value;
-    t_stacknode *next;
-    t_stacknode *prev;
-}	t_stacknode;
+    int                 is_top;
+    int                 value;
+    struct s_stacknode  *next;
+    struct s_stacknode  *prev;
+}   t_stacknode;
 
 //a_2_b_helpers.c
 void        get_a_node_pos(int *pos, int *len, t_stacknode *node, t_stacknode *head);
