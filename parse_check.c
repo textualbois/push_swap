@@ -32,10 +32,10 @@ void	pre_parse(int *argc, char ***argv)
 {
 	if (*argc > 2)
 		*argv = rm_el(*argv, 0, *argc);
-	if (*argc == 2)
+	else if (*argc == 2)
 	{
-		*argv = ft_split(*argv[1], ' ');
-		*argc = ft_arrlen(*argv);
+		*argv = ft_split((*argv)[1], ' ');
+		*argc = ft_arrlen(*argv) + 1;
 	}
 	else
 		*argv = NULL;
@@ -46,7 +46,7 @@ int	*transform(int argc, char **arr)
 	int	*res;
 	int	i;
 
-	res = malloc((argc + 1) * sizeof(int));
+	res = malloc((argc) * sizeof(int));
 	if (res == NULL)
 		return (NULL);
 	res[0] = argc;

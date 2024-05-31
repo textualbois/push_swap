@@ -38,7 +38,7 @@ char	**rm_el(char **arr, int index, int arr_len)
 		return (werror("Error\n", 2));
 	i = 0;
 	j = 0;
-	while (i < arr_len)
+	while (i + 1 < arr_len)
 	{	
 		j = (i >= index);
 		res[i] = malloc(ft_strlen(arr[i + j] + 1));
@@ -47,7 +47,7 @@ char	**rm_el(char **arr, int index, int arr_len)
 			res = clear_arr(res);
 			return (werror("Error\n", 2));
 		}
-		ft_strlcpy(res[i], arr[i + j], ft_strlen(arr[i + j]));
+		ft_strlcpy(res[i], arr[i + j], ft_strlen(arr[i + j]) + 1);
 		i++;
 	}
 	res[i] = NULL;

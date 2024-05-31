@@ -13,9 +13,9 @@ int main (int argc, char **argv)
     }
     else
     {
-        while (i <= input[0])
+        while (i < input[0])
         {
-            printf("%i\n", input[i]);
+            printf("%i, ", input[i]);
             i++;
         }
         //exec_push_swap(input);
