@@ -6,11 +6,13 @@ void    execute_push_swap(int *inputs)
     t_stacknode *b_head;
 
     a_head = init_stack_a(inputs);
-    if (a_head == NULL)
-        return (NULL);
-    b_head = NULL;
-    while (a_head != NULL)
-        move_2_stack_b(&a_head, &b_head);
+    werror("Error\n", 2);
+    if (a_head != NULL)
+    {
+        b_head = NULL;
+        while (a_head != NULL)
+            move_2_stack_b(&a_head, &b_head);
+    }
 }
 
 void    move_2_stack_b(t_stacknode **a_head, t_stacknode **b_head)
@@ -82,13 +84,12 @@ int calculate_moves(t_stacknode *a_node, t_stacknode *a_head, t_stacknode *b_hea
     
     get_a_node_pos(&a_pos, &a_len, a_node, a_head);
     get_b_node_insert(&b_pos, &b_len, a_node->value, b_head);
-    return (min(
-                min(
-                    max(a_pos, b_pos),
-                    max(a_len - a_pos + 1, b_len - b_pos + 1)),
-                min(
+    return (int_min(
+                int_min(
+                    int_max(a_pos, b_pos),
+                    int_max(a_len - a_pos + 1, b_len - b_pos + 1)),
+                int_min(
                     a_pos + b_len-b_pos + 1,
                     a_len - a_pos + 1 + b_pos)
             ));
-
 }
