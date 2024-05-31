@@ -11,8 +11,9 @@ int main (int argc, char **argv)
         free(input); // dont need to free as it is freed in parse_check
        // bad_input(); // error message is also in parse_check
     }
-    else
+    else if(no_duplicates(input))
     {
+
         while (i < input[0])
         {
             printf("%i, ", input[i]);
@@ -20,5 +21,8 @@ int main (int argc, char **argv)
         }
         //exec_push_swap(input);
     }
+    else
+        werror("Error\n", 2);
+    free(input);
     
 }
