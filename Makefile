@@ -1,7 +1,7 @@
 NAME = push_swap
 
 SRCS = a_2_b_helpers.c arr_utils.c clear.c init.c main.c \
-       operations_1.c operations_2.c parse_check.c \
+       operations_1.c operations_2.c parse_check.c parse_check_2.c \
        push_swap.c wild_math.c error.c
 
 

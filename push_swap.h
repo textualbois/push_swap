@@ -49,6 +49,10 @@ int         *parse_check(int argc, char **argv);
 void	    pre_parse(int *argc, char ***argv);
 int		    *transform(int argc, char **arr);
 
+//parse_check_2.c
+int         no_duplicates(int *arr);
+
+
 //push_swap.c
 void        execute_push_swap(int *inputs);
 void        move_2_stack_b(t_stacknode **a_head, t_stacknode **b_head);
