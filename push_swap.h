@@ -17,7 +17,7 @@ typedef struct s_stacknode{
 //a_2_b_helpers.c
 void        get_a_node_pos(int *pos, int *len, t_stacknode *node, t_stacknode *head);
 void        get_b_node_insert(int *pos, int *len, int value, t_stacknode *head);
-void        get_pos_alt(int *pos, int val, t_stacknode *head);
+void        get_pos_alt(int *pos, t_stacknode *head);
 
 //arr_utils.c
 size_t      ft_arrlen(char **arr);
@@ -26,6 +26,9 @@ char        **rm_el(char **arr, int index, int arr_len);
 
 //clear.c
 t_stacknode *clear_list(t_stacknode *head);
+
+//error.c
+void	    *werror(char *msg, int fd);
 
 //init.c
 t_stacknode *init_stack_a(int *inputs);
@@ -39,6 +42,18 @@ void	    add_before(t_stacknode *current, t_stacknode *new);
 //oporations_2.c
 void	    insert_after(t_stacknode *current, t_stacknode *new);
 void	    insert_before(t_stacknode *current, t_stacknode *new);
+
+//parse_check.c
+int         is_int(char *str);
+int         *parse_check(int argc, char **argv);
+void	    pre_parse(int *argc, char ***argv);
+int		    *transform(int argc, char **arr);
+
+//push_swap.c
+void        execute_push_swap(int *inputs);
+void        move_2_stack_b(t_stacknode **a_head, t_stacknode **b_head);
+void        do_a_2_b_movement(t_stacknode **a_head, t_stacknode **b_head, t_stacknode *best_a_node);
+int         calculate_moves(t_stacknode *a_node, t_stacknode *a_head, t_stacknode *b_head);
 
 //wild_math.c
 int         int_min(int a, int b);
