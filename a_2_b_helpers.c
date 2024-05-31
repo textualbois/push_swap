@@ -1,26 +1,26 @@
 #include "push_swap.h"
 
-void get_a_node_pos(int *pos, int *len, t_stacknode *node, t_stacknode *head)
+void    get_a_node_pos(int *pos, int *len, t_stacknode *node, t_stacknode *head)
 {
     t_stacknode *current; 
 
     *pos = 0;
     *len = 0;
     current = head;
-    while (current->next != node);
+    while (current->next != node)
     {
-        *pos++;
-        *len++;
+        (*pos)++;
+        (*len)++;
         current = current->next;
     }
     while (current->next != head)
     {
-        *len++;
+        (*len)++;
         current = current->next;
     }
 }
 
-void get_b_node_insert(int *pos, int *len, int value, t_stacknode *head)
+void    get_b_node_insert(int *pos, int *len, int value, t_stacknode *head)
 {
     t_stacknode *current;
     int         smallest;
@@ -33,22 +33,22 @@ void get_b_node_insert(int *pos, int *len, int value, t_stacknode *head)
     current = head;
     while (current->next != head && head != NULL)
     {
-        smallest = min(smallest, current->value);
+        smallest = int_min(smallest, current->value);
         if (value < current->value)
         {
             if (value > current->prev->value)
                 got_pos = true;
         }
-        *len++;
+        (*len)++;
         if (got_pos == false)
-            *pos++;
+            (*pos)++;
         current = current->next;
     }
     if (got_pos == false)
-        get_pos_alt(pos, head, value);
+        get_pos_alt(pos, head);
 }
 
-void    get_pos_alt(int *pos, int val, t_stacknode *head)
+void    get_pos_alt(int *pos, t_stacknode *head)
 {
     t_stacknode *current;
     int         smallest;
