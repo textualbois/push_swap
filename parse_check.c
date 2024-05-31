@@ -1,31 +1,32 @@
 #include "push_swap.h"
 
+int	is_int(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] != '\0')
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int *parse_check(int argc, char **argv)
 {
 	int i;
 	int *res;
 
 	pre_parse(&argc, &argv);
-	if (argv == NULL || argc < 2)
+	if (argv == NULL)
 		return (werror("Error\n", 2));
 	i = 0;
-	res = (int *)malloc(sizeof(int) * argc);
-	if (res == NULL)
-	{
-		argv = clear_arr(argv);
-		return (werror("Error\n", 2));
-	}
-	while (i < argc)
-	{
-		if(is_int(argv[i]))
-			res[i] = ft_atoi(argv[i]);
-		else
-		{
-			argv = clear_arr(argv);
-			res = clear_arr(res);
-			return (werror("Error\n", 2));
-		}
-	}
+	res = transform(argc, argv);
+	clear_arr(argv);
 	return (res);
 }
 
@@ -50,17 +51,19 @@ int		*transform(int argc, char **arr)
 	res = malloc((ft_arrlen(arr) + 1) * sizeof(int));
 	if (res == NULL)
 		return (NULL);
+	res[0] = ft_arrlen(arr);
 	i = 0;
 	while (arr[i] != NULL)
 	{
-		res[i] = ft_atoi(arr[i]);
-		if (res[i] == NULL)
+		if (is_int(arr[i]))
+			res[i + 1] = ft_atoi(arr[i]);
+		else
 		{
-			clear_arr(res);
+			werror("Error\n", 2);
+			free(res);
 			return (NULL);
 		}
 		i++;
 	}
-	res[i] = NULL;
 	return (res);
 }
