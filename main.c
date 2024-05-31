@@ -9,7 +9,7 @@ int main (int argc, char **argv)
     if (input == NULL)
     {
         free(input); // dont need to free as it is freed in parse_check
-        bad_input(); // error message is also in parse_check
+       // bad_input(); // error message is also in parse_check
     }
     else
     {
