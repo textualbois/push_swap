@@ -40,8 +40,19 @@ void	    add_after(t_stacknode *current, t_stacknode *new);
 void	    add_before(t_stacknode *current, t_stacknode *new);
 
 //oporations_2.c
-void	    insert_after(t_stacknode *current, t_stacknode *new);
-void	    insert_before(t_stacknode *current, t_stacknode *new);
+void	    insert_after(t_stacknode *dst, t_stacknode *new_node);
+void	    insert_before(t_stacknode *dst, t_stacknode *new_node);
+
+//operations_3.c
+void    	push(t_stacknode **src, t_stacknode **dst);
+void	    swap_top(t_stacknode **head);
+void	    rotate(t_stacknode **head);
+void	    rev_rotate(t_stacknode **head);
+
+//operations_4.c
+void    	ss(t_stacknode **head_a, t_stacknode **head_b);
+void	    rr(t_stacknode **head_a, t_stacknode **head_b);
+void	    rev_rr(t_stacknode **head_a, t_stacknode **head_b);
 
 //parse_check.c
 int         is_int(char *str);
