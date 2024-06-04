@@ -12,7 +12,10 @@ void	push(t_stacknode **src, t_stacknode **dst)
 	(*dst)->is_top = 0;
 	src_new_head->is_top = 1;
 	*dst = *src;
-	*src = src_new_head;
+	if (src_new_head != *src)
+		*src = src_new_head;
+	else
+		*src = NULL;
 }
 
 void	swap_top(t_stacknode **head)
