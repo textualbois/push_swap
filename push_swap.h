@@ -26,6 +26,7 @@ typedef struct s_stacknode{
 void        get_a_node_pos(int *pos, int *len, t_stacknode *node, t_stacknode *head);
 void        get_b_node_insert(int *pos, int *len, int value, t_stacknode *head);
 void        get_pos_alt(int *pos, t_stacknode *head);
+int         calculate_moves(t_stacknode *a_node, t_stacknode *a_head, t_stacknode *b_head, int *moves);
 
 //arr_utils.c
 size_t      ft_arrlen(char **arr);
@@ -71,13 +72,10 @@ int		    *transform(int argc, char **arr);
 //parse_check_2.c
 int         no_duplicates(int *arr);
 
-
 //push_swap.c
 void        execute_push_swap(int *inputs);
 void        move_2_stack_b(t_stacknode **a_head, t_stacknode **b_head, int best_dir, int temp_dir);
 void        do_a_2_b_movement(t_stacknode **a_head, t_stacknode **b_head, t_stacknode *a_node, int direction);
-int         calculate_moves(t_stacknode *a_node, t_stacknode *a_head, t_stacknode *b_head, int *moves);
-
 //cmd_executer.c
 void    	move_both_up(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos);
 void    	move_both_down(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos, t_twoints len);
