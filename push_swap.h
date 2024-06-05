@@ -6,6 +6,14 @@
 # include "libft/libft.h"
 
 # define other_task_present 0
+# define both_up 0
+# define both_down 1
+# define a_up_b_down 2
+# define a_down_b_up 3
+typedef struct  s_twoints{
+    int         a;
+    int         b;
+}               t_twoints;
 
 typedef struct s_stacknode{
     int                 is_top;
@@ -66,9 +74,15 @@ int         no_duplicates(int *arr);
 
 //push_swap.c
 void        execute_push_swap(int *inputs);
-void        move_2_stack_b(t_stacknode **a_head, t_stacknode **b_head);
-void        do_a_2_b_movement(t_stacknode **a_head, t_stacknode **b_head, t_stacknode *best_a_node);
-int         calculate_moves(t_stacknode *a_node, t_stacknode *a_head, t_stacknode *b_head);
+void        move_2_stack_b(t_stacknode **a_head, t_stacknode **b_head, int best_dir, int temp_dir);
+void        do_a_2_b_movement(t_stacknode **a_head, t_stacknode **b_head, t_stacknode *a_node, int direction);
+int         calculate_moves(t_stacknode *a_node, t_stacknode *a_head, t_stacknode *b_head, int *moves);
+
+//cmd_executer.c
+void    	move_both_up(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos);
+void    	move_both_down(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos, t_twoints len);
+void    	move_a_up_b_down(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos, t_twoints len);
+void	    move_a_down_b_up(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos, t_twoints len);
 
 //wild_math.c
 int         int_min(int a, int b);
