@@ -10,7 +10,7 @@ int	no_duplicates(int *arr)
 	i = 1;
 	while (i < len - 1)
 	{
-		j = i + j;
+		j = i + 1;
 		while (j < len)
 		{
 			if (arr[i] == arr[j])

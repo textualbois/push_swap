@@ -74,8 +74,10 @@ int         no_duplicates(int *arr);
 
 //push_swap.c
 void        execute_push_swap(int *inputs);
-void        move_2_stack_b(t_stacknode **a_head, t_stacknode **b_head, int best_dir, int temp_dir);
+void        move_2_stack_b(t_stacknode **a_head, t_stacknode **b_head, int best_dir);
 void        do_a_2_b_movement(t_stacknode **a_head, t_stacknode **b_head, t_stacknode *a_node, int direction);
+void        move_2_stack_a(t_stacknode **a_head, t_stacknode **b_head);
+
 //cmd_executer.c
 void    	move_both_up(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos);
 void    	move_both_down(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos, t_twoints len);

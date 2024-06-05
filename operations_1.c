@@ -21,12 +21,18 @@ void	make_circular(t_stacknode *head, t_stacknode *last)
 
 void	add_after(t_stacknode *current, t_stacknode *new)
 {
-	current->next = new;
-	new->prev = current;
+	if (current != NULL)
+	{
+		current->next = new;
+		new->prev = current;
+	}
 }
 
 void	add_before(t_stacknode *current, t_stacknode *new)
 {
-	current->prev = new;
-	new->next = current;
+	if (current != NULL)
+	{
+		current->prev = new;
+		new->next = current;
+	}
 }

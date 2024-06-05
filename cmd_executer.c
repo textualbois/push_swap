@@ -75,7 +75,7 @@ void	move_a_down_b_up(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos,
 	while (pos.b != 0)
 	{
 		rotate(b_head);
-		pos.b++;
+		pos.b--;
 		write(1, "rb\n", 3);
 	}
 }

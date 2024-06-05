@@ -2,14 +2,20 @@
 
 void	insert_after(t_stacknode *dst, t_stacknode *new_node)
 {
-	add_before(dst->next, new_node);
-	add_after(dst, new_node);
+	if (dst != NULL)
+	{
+		add_before(dst->next, new_node);
+		add_after(dst, new_node);
+	}
 }
 
 void	insert_before(t_stacknode *dst, t_stacknode *new_node)
 {
-	add_after(dst->prev, new_node);
-	add_before(dst, new_node);
+	if (dst != NULL)
+	{
+		add_after(dst->prev, new_node);
+		add_before(dst, new_node);
+	}
 }
 
 // void	insert_after(t_stacknode *dst, t_stacknode *new_node)

@@ -5,16 +5,14 @@ void    execute_push_swap(int *inputs)
     t_stacknode *a_head;
     t_stacknode *b_head;
     int         best_dir;
-    int         temp_dir;
 
     best_dir = 0;
-    temp_dir = 0;
     a_head = init_stack_a(inputs);
+    b_head = NULL;
     if (a_head != NULL)
     {
-        b_head = NULL;
         while (a_head != NULL)
-            move_2_stack_b(&a_head, &b_head, best_dir, temp_dir);
+            move_2_stack_b(&a_head, &b_head, best_dir);
     }
     else
         werror("Error\n", 2);
@@ -24,16 +22,19 @@ void    execute_push_swap(int *inputs)
 
 void    move_2_stack_a(t_stacknode **a_head, t_stacknode **b_head)
 {
-
+    push(b_head, a_head);
+    write(1, "pa\n", 3);
 }
 
-void    move_2_stack_b(t_stacknode **a_head, t_stacknode **b_head, int best_dir, int temp_dir)
+void    move_2_stack_b(t_stacknode **a_head, t_stacknode **b_head, int best_dir)
 {
     t_stacknode *a_node;
     int         min_moves;
     int         temp_moves;
     t_stacknode *best_a_node;
+    int         temp_dir;
 
+    temp_dir = best_dir;
     a_node = *a_head;
     best_dir = calculate_moves(a_node, *a_head, *b_head, &min_moves);
     best_a_node = a_node;
@@ -45,20 +46,20 @@ void    move_2_stack_b(t_stacknode **a_head, t_stacknode **b_head, int best_dir,
         {
             best_a_node = a_node;
             min_moves = temp_moves;
+            best_dir = temp_dir;
         }
         a_node = a_node->next;
     }
     do_a_2_b_movement(a_head, b_head, best_a_node, best_dir);
 }
 
-// Todo
 void do_a_2_b_movement(t_stacknode **a_head, t_stacknode **b_head, t_stacknode *a_node, int direction)
 {
     t_twoints pos;
     t_twoints len;
 
-    get_a_node_pos((&pos)->a, (&len)->a, a_node, *a_head);
-    get_b_node_insert((&pos)->b, (&len)->b, a_node->value, *b_head);
+    get_a_node_pos(&(pos.a), &(len.a), a_node, *a_head);
+    get_b_node_insert(&(pos.b), &(len.b), a_node->value, *b_head);
     if (direction == both_up)
         move_both_up(a_head, b_head, pos);
     else if (direction == both_down)

@@ -9,8 +9,11 @@ void	push(t_stacknode **src, t_stacknode **dst)
 	src_new_tail = (*src)->prev;
 	insert_before(*dst, *src);
 	make_circular(src_new_head, src_new_tail);
-	(*dst)->is_top = 0;
 	src_new_head->is_top = 1;
+	if (*dst != NULL)
+		(*dst)->is_top = 0;
+	else
+		make_circular(*src, *src);
 	*dst = *src;
 	if (src_new_head != *src)
 		*src = src_new_head;
@@ -23,7 +26,7 @@ void	swap_top(t_stacknode **head)
 	t_stacknode *first;
 	t_stacknode *second;
 
-	if(head != NULL && *head != NULL && (*head)->next != head)
+	if(head != NULL && *head != NULL && (*head)->next != *head)
 	{
 		first = *head;
 		second = first->next;

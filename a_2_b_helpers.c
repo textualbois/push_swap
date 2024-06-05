@@ -6,21 +6,21 @@ int calculate_moves(t_stacknode *a_node, t_stacknode *a_head, t_stacknode *b_hea
     t_twoints len;
     int res;
     
-    get_a_node_pos((&pos)->a, (&len)->a, a_node, a_head);
-    get_b_node_insert((&pos)->b, (&len)->b, a_node->value, b_head);
+    get_a_node_pos(&(pos.a), &(len.a), a_node, a_head);
+    get_b_node_insert(&(pos.b), &(len.b), a_node->value, b_head);
     *moves = int_max(pos.a, pos.b);
     res = both_up;
-    if (int_max(len.a - pos.a + 1, len.b - pos.b + 1) < moves)
+    if (int_max(len.a - pos.a + 1, len.b - pos.b + 1) < *moves)
     {
         *moves = int_max(len.a - pos.a + 1, len.b - pos.b + 1);
         res = both_down;
     }
-    if ((pos.a + len.a - pos.b + 1) < moves)
+    if ((pos.a + len.a - pos.b + 1) < *moves)
     {
         *moves = pos.a + len.b - pos.b + 1;
         res = a_up_b_down;
     }
-    if ((len.a - pos.a + 1 + pos.b) < moves)
+    if ((len.a - pos.a + 1 + pos.b) < *moves)
     {
         *moves = len.a - pos.a + 1 + pos.b;
         res = a_down_b_up;
@@ -59,7 +59,7 @@ void    get_b_node_insert(int *pos, int *len, int value, t_stacknode *head)
     *pos = 0;
     *len = 0;
     current = head;
-    while (current->next != head && head != NULL)
+    while (head != NULL && current->next != head)
     {
         smallest = int_min(smallest, current->value);
         if (value < current->value)
@@ -84,10 +84,10 @@ void    get_pos_alt(int *pos, t_stacknode *head)
 
     index = 0;
     *pos = index;
-    smallest = head->value;
-    current = head->next;
     if (head != NULL)
     {
+        smallest = head->value;
+        current = head->next;
         while (current != head)
         {
             index++;
@@ -96,6 +96,7 @@ void    get_pos_alt(int *pos, t_stacknode *head)
                 *pos = index;
                 smallest = current->value;
             }
+            current = current->next;
         }
     }
 }

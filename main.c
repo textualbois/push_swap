@@ -5,6 +5,7 @@ int main (int argc, char **argv)
     int *input;
     int i = 0;
 
+
     input = parse_check(argc, argv);
     if (input == NULL)
     {
@@ -13,13 +14,12 @@ int main (int argc, char **argv)
     }
     else if (no_duplicates(input))
     {
-
         while (i < input[0])
         {
             printf("%i, ", input[i]);
             i++;
         }
-        //exec_push_swap(input);
+        execute_push_swap(input);
     }
     else
         werror("Error\n", 2);
