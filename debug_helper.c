@@ -9,7 +9,7 @@ void	print_stack(t_stacknode *head)
 	else
 	{
 		temp = head;
-		write(1, "stack start\n", ft_strlen("stack start\n"));
+		write(1, "stack start\n|", ft_strlen("stack start\n|"));
 		ft_putnbr_fd(temp->value, 1);
 		temp = temp->next;
 		while (temp != head)
@@ -18,7 +18,7 @@ void	print_stack(t_stacknode *head)
 			ft_putnbr_fd(temp->value, 1);
 			temp = temp->next;
 		}
-		write(1, "\n", 1);
+		write(1, "|\n", 2);
 		write(1, "stack end\n", ft_strlen("stack end\n"));
 	}
 }

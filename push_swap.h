@@ -91,4 +91,8 @@ void	    move_a_down_b_up(t_stacknode **a_head, t_stacknode **b_head, t_twoints 
 int         int_min(int a, int b);
 int         int_max(int a, int b);
 
+//debug_helper.c
+void		print_stack(t_stacknode *head);
+
+
 #endif
