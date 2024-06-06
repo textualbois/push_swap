@@ -13,7 +13,7 @@ t_stacknode *init_stack_a(int *inputs)
 	head->is_top = 1;
 	current = head;
 	i = 2;
-	while (i <= inputs[0])
+	while (i < inputs[0])
 	{
 		new = create_new_node(inputs[i]);
 		if (new == NULL)
