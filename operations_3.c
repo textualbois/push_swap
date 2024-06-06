@@ -5,9 +5,9 @@ void	push(t_stacknode **src, t_stacknode **dst)
 	t_stacknode	*src_new_head;
 	t_stacknode	*src_new_tail;
 
-	// ft_putstr_fd("\nvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv", 1);
-	// write(1, "\ndestination stack before push:\n", ft_strlen("\ndestination stack before push\n:"));
-	// print_stack(*dst);
+	ft_putstr_fd("\nvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv", 1);
+	write(1, "\ndestination stack before push:\n", ft_strlen("\ndestination stack before push\n:"));
+	print_stack(*dst);
 
 	src_new_head = (*src)->next;
 	src_new_tail = (*src)->prev;
@@ -42,9 +42,9 @@ void	push(t_stacknode **src, t_stacknode **dst)
 		(*src)->is_top = 1;
 	}
 
-	// write(1, "destination stack after push:\n", ft_strlen("destination stack after push\n:"));
-	// print_stack(*dst);
-	// ft_putstr_fd("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n", 1);
+	write(1, "destination stack after push:\n", ft_strlen("destination stack after push\n:"));
+	print_stack(*dst);
+	ft_putstr_fd("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n", 1);
 }
 
 void	swap_top(t_stacknode **head)

@@ -8,7 +8,7 @@ void	execute_push_swap(int *inputs)
 
 	best_dir = 0;
 	a_head = init_stack_a(inputs);
-	//print_stack(a_head);
+	print_stack(a_head);
 	b_head = NULL;
 	if (a_head != NULL)
 	{
@@ -18,7 +18,7 @@ void	execute_push_swap(int *inputs)
 	}
 	else
 		werror("Error\n", 2);
-	//ft_putstr_fd("\n\nSENDING BACK TO B\n\n", 1);
+	ft_putstr_fd("\n\nSENDING BACK TO B\n\n", 1);
 	while (b_head != NULL)
 		move_2_stack_a(&a_head, &b_head);
 }
@@ -40,17 +40,17 @@ void	move_2_stack_b(t_stacknode **a_head, t_stacknode **b_head, int best_dir)
 	temp_dir = best_dir;
 	a_node = *a_head;
 	best_dir = calculate_moves(a_node, *a_head, *b_head, &min_moves);
-	// ft_putstr_fd("temp moves are - ", 1);
-	// ft_putnbr_fd(min_moves, 1);
-	// ft_putstr_fd("\n", 1);
+	ft_putstr_fd("temp moves are - ", 1);
+	ft_putnbr_fd(min_moves, 1);
+	ft_putstr_fd("\n", 1);
 	best_a_node = a_node;
 	a_node = a_node->next;
 	while (a_node != *a_head)
 	{
 		temp_dir = calculate_moves(a_node, *a_head, *b_head, &temp_moves);
-		// ft_putstr_fd("temp moves are - ", 1);
-		// ft_putnbr_fd(temp_moves, 1);
-		// ft_putstr_fd("\n", 1);
+		ft_putstr_fd("temp moves are - ", 1);
+		ft_putnbr_fd(temp_moves, 1);
+		ft_putstr_fd("\n", 1);
 		if (temp_moves < min_moves)
 		{
 			best_a_node = a_node;

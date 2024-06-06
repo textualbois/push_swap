@@ -46,10 +46,10 @@ void	get_a_node_pos(int *pos, int *len, t_stacknode *node, t_stacknode *head)
 		*len = *len + 1;
 		current = current->next;
 	}
-	// ft_putstr_fd("\nfor value = ", 1);
-	// ft_putnbr_fd(node->value, 1);
-	// ft_putstr_fd(" - pos.a is = ", 1);
-	// ft_putnbr_fd(*pos, 1);
+	ft_putstr_fd("\nfor value = ", 1);
+	ft_putnbr_fd(node->value, 1);
+	ft_putstr_fd(" - pos.a is = ", 1);
+	ft_putnbr_fd(*pos, 1);
 }
 
 void	get_b_node_insert(int *pos, int *len, int value, t_stacknode *head)
@@ -63,7 +63,16 @@ void	get_b_node_insert(int *pos, int *len, int value, t_stacknode *head)
 	*pos = 0;
 	*len = 0;
 	current = head;
-	while (head != NULL && current->next != head)
+	if (value > current->value)
+	{
+		if (value < current->prev->value)
+			got_pos = true;
+	}
+	*len = *len + 1;
+	if (got_pos == false)
+		*pos = *pos + 1;
+	current = current->next;
+	while (head != NULL && current != head)
 	{
 	//	largest = int_max(largest, current->value);
 		if (value > current->value)
@@ -78,9 +87,10 @@ void	get_b_node_insert(int *pos, int *len, int value, t_stacknode *head)
 	}
 	if (got_pos == false)
 		get_pos_alt(pos, head);
-	// ft_putstr_fd(" - pos.b is = ", 1);
-	// ft_putnbr_fd(*pos, 1);
-	// ft_putstr_fd(" ", 1);
+
+	ft_putstr_fd(" - pos.b is = ", 1);
+	ft_putnbr_fd(*pos, 1);
+	ft_putstr_fd(" ", 1);
 }
 
 void	get_pos_alt(int *pos, t_stacknode *head)
