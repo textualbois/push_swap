@@ -8,7 +8,7 @@ void	execute_push_swap(int *inputs)
 
 	best_dir = 0;
 	a_head = init_stack_a(inputs);
-	print_stack(a_head);
+	//print_stack(a_head);
 	b_head = NULL;
 	if (a_head != NULL)
 	{
@@ -18,7 +18,7 @@ void	execute_push_swap(int *inputs)
 	}
 	else
 		werror("Error\n", 2);
-	ft_putstr_fd("\n\nSENDING BACK TO B\n\n", 1);
+	//ft_putstr_fd("\n\nSENDING BACK TO B\n\n", 1);
 	while (b_head != NULL)
 		move_2_stack_a(&a_head, &b_head);
 }
