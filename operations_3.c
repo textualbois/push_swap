@@ -3,8 +3,8 @@
 void	push(t_stacknode **src, t_stacknode **dst)
 {
 	t_stacknode	*src_new_head;
-	t_stacknode *src_new_tail;
-	
+	t_stacknode	*src_new_tail;
+
 	src_new_head = (*src)->next;
 	src_new_tail = (*src)->prev;
 	insert_before(*dst, *src);
@@ -23,15 +23,15 @@ void	push(t_stacknode **src, t_stacknode **dst)
 
 void	swap_top(t_stacknode **head)
 {
-	t_stacknode *first;
-	t_stacknode *second;
+	t_stacknode	*first;
+	t_stacknode	*second;
 
 	if(head != NULL && *head != NULL && (*head)->next != *head)
 	{
 		first = *head;
 		second = first->next;
 		first->prev->next = second; // 0->2
-		second->prev = first->prev; // 0<-2 
+		second->prev = first->prev; // 0<-2
 		first->next = second->next; // 1->3
 		second->next->prev = first; // 1<-3
 		second->next = first; // 2->1
@@ -44,7 +44,7 @@ void	swap_top(t_stacknode **head)
 
 void	rotate(t_stacknode **head)
 {
-	t_stacknode *first;
+	t_stacknode	*first;
 
 	first = *head;
 	first->is_top = 0;
@@ -54,12 +54,10 @@ void	rotate(t_stacknode **head)
 
 void	rev_rotate(t_stacknode **head)
 {
-	t_stacknode *first;
+	t_stacknode	*first;
 
 	first = *head;
 	first->is_top = 0;
 	first->prev->is_top = 1;
 	*head = first->prev;
 }
-
-
