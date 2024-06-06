@@ -1,28 +1,19 @@
 #include "push_swap.h"
 
-int main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    int *input;
-    int i = 0;
+	int	*input;
 
-
-    input = parse_check(argc, argv);
-    if (input == NULL)
-    {
-        free(input); // dont need to free as it is freed in parse_check
-       // bad_input(); // error message is also in parse_check
-    }
-    else if (no_duplicates(input))
-    {
-        while (i < input[0])
-        {
-            printf("%i, ", input[i]);
-            i++;
-        }
-        execute_push_swap(input);
-    }
-    else
-        werror("Error\n", 2);
-    free(input);
-    
+	input = parse_check(argc, argv);
+	if (input == NULL)
+	{
+		free(input); // dont need to free as it is freed in parse_check
+	}
+	else if (no_duplicates(input))
+	{
+		execute_push_swap(input);
+	}
+	else
+		werror("Error\n", 2);
+	free(input);
 }
