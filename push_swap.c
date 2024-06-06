@@ -13,11 +13,17 @@ void    execute_push_swap(int *inputs)
     {
         while (a_head != NULL)
             move_2_stack_b(&a_head, &b_head, best_dir);
+        reset_order(&b_head);
     }
     else
         werror("Error\n", 2);
+    //int i =0;
     while (b_head != NULL)
+    {
+        ft_putnbr_fd(b_head->value, 1);
+        write(1, "\n", 1);
         move_2_stack_a(&a_head, &b_head);
+    }
 }
 
 void    move_2_stack_a(t_stacknode **a_head, t_stacknode **b_head)

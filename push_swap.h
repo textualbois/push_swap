@@ -33,6 +33,9 @@ size_t      ft_arrlen(char **arr);
 void        *clear_arr(char **res_arr);
 char        **rm_el(char **arr, int index, int arr_len);
 
+//b_2_a_helpers.c
+void        reset_order(t_stacknode **head);
+
 //clear.c
 t_stacknode *clear_list(t_stacknode *head);
 
