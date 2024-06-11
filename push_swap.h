@@ -33,6 +33,10 @@ size_t		ft_arrlen(char **arr);
 void		*clear_arr(char **res_arr);
 char		**rm_el(char **arr, int index, int arr_len);
 
+//list_utuls.c
+int			ft_stacksize(t_stacknode *head);
+t_stacknode	*ft_max_val_node(t_stacknode *head);
+
 //b_2_a_helpers.c
 void		reset_order(t_stacknode **head);
 

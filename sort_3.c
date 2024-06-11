@@ -2,14 +2,22 @@
 
 void	three_sort(t_stacknode **head)
 {
-	t_stacknode	*max_val;
+	t_stacknode	*max_node;
 
-	max_val = *head; // bad placeholder
-	//max_val = max_value(*head);
-	if (max_val == *head)
+	max_node = ft_max_val_node(*head); 
+	if (max_node == *head)
+	{
 		rotate(head);
-	if (max_val == (*head)->next)
+		ft_putstr_fd("ra\n", 1);
+	}
+	if (max_node == (*head)->next)
+	{
 		rev_rotate(head);
+		ft_putstr_fd("rra\n", 1);
+	}
 	if ((*head)->value > (*head)->next->value)
+	{
 		swap_top(head);
+		ft_putstr_fd("sa\n", 1);
+	}
 }
