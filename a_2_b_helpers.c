@@ -15,7 +15,7 @@ int	calculate_moves(t_stacknode *a_node, t_stacknode *a_head, t_stacknode *b_hea
 		*moves = int_max(len.a - pos.a + 1, len.b - pos.b + 1);
 		res = both_down;
 	}
-	if ((pos.a + len.a - pos.b + 1) < *moves)
+	if ((pos.a + len.b - pos.b + 1) < *moves)
 	{
 		*moves = pos.a + len.b - pos.b + 1;
 		res = a_up_b_down;
