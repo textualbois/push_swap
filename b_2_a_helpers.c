@@ -1,108 +1,146 @@
 #include "push_swap.h"
 
-static void	get_largest_pos(int *to_top, int *to_bottom, t_stacknode *head)
+#include "push_swap.h"
+
+int	calculate_moves_2_a(t_stacknode *b_node, t_stacknode *a_head, t_stacknode *b_head, int *moves)
+{
+	t_twoints	pos;
+	t_twoints	len;
+	int			res;
+
+	get_b_node_pos(&(pos.b), &(len.b), b_node, b_head);
+	get_a_node_insert(&(pos.a), &(len.a), b_node->value, a_head);
+	*moves = int_max(pos.a, pos.b);
+	res = both_up;
+	if (int_max(len.a - pos.a + 1, len.b - pos.b + 1) < *moves)
+	{
+		*moves = int_max(len.a - pos.a + 1, len.b - pos.b + 1);
+		res = both_down;
+	}
+	if ((pos.a + len.b - pos.b + 1) < *moves)
+	{
+		*moves = pos.a + len.b - pos.b + 1;
+		res = a_up_b_down;
+	}
+	if ((len.a - pos.a + 1 + pos.b) < *moves)
+	{
+		*moves = len.a - pos.a + 1 + pos.b;
+		res = a_down_b_up;
+	}
+	return (res);
+}
+
+void	get_b_node_pos(int *pos, int *len, t_stacknode *node, t_stacknode *head)
 {
 	t_stacknode	*current;
-	int			max;
-	int			count;
 
+	*pos = 0;
+	*len = 0;
 	current = head;
-	max = current->value;
-	*to_top = 0;
-	count = 0;
-	current = current->next;
-	while (current->value < max && current != head)
+	while (current != node)
 	{
-		count++;
+		*pos = *pos + 1;
+		*len = *len + 1;
 		current = current->next;
 	}
-	if (current->value > max)
+	while (current->next != head)
 	{
-		*to_top = count;
-		count = 0;
-	}
-	while (current != head)
-	{
-		count++;
+		*len = *len + 1;
 		current = current->next;
 	}
-	*to_bottom = count;
+	// ft_putstr_fd("for value = ", 1);
+	// ft_putnbr_fd(node->value, 1);
+	// ft_putstr_fd(" - pos.b is = ", 1);
+	// ft_putnbr_fd(*pos, 1);
+	// ft_putstr_fd("; ", 1);
 }
 
-void	reset_order(t_stacknode **head)
+void	get_a_node_insert(int *pos, int *len, int value, t_stacknode *head)
 {
-	int	to_top;
-	int	to_bottom;
+	t_stacknode	*current;
+	int			got_pos;
 
-	// ft_putstr_fd("\nvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv\nreseting stack b order\n", 1);
-	// ft_putstr_fd("stack was :\n", 1);
-	// //print_stack(*head);
-	get_largest_pos(&to_top, &to_bottom, *head);
-	// write(1, "to_top = ", 9);
-	// ft_putnbr_fd(to_top, 1);
-	// write(1, "\n", 2);
-	// write(1, "to_bottom = ", 12);
-	// ft_putnbr_fd(to_bottom, 1);
-	// write(1, "\n\n", 2);
-	if (to_top <= to_bottom)
+	got_pos = false;
+	*pos = 0;
+	*len = 0;
+	current = head;
+	if (head != NULL)
 	{
-		while (to_top >= 0)
+		if (value < current->value)
 		{
-			rotate(head);
-			to_top--;
-			write(1, "rb\n", 3);
-			//ft_putstr_fd("B = ", 1);
-			//print_stack(*head);
+			// ft_putstr_fd("\nvalue = ", 1);
+			// ft_putnbr_fd(value, 1);
+			// ft_putstr_fd(" is less than ", 1);
+			// ft_putnbr_fd(current->value, 1);
+			// ft_putstr_fd("\n", 1);
+			if (value > current->prev->value)
+			{
+				// ft_putstr_fd("and is more than ", 1);
+				// ft_putnbr_fd(current->prev->value, 1);
+				// ft_putstr_fd("\n", 1);
+				got_pos = true;
+			}
+		}
+		*len = *len + 1;
+		if (got_pos == false)
+			*pos = *pos + 1;
+
+		current = current->next;
+		while (current != head)
+		{
+			if (value < current->value)
+			{
+			// 	ft_putstr_fd("\nvalue = ", 1);
+			// 	ft_putnbr_fd(value, 1);
+			// 	ft_putstr_fd(" is less than ", 1);
+			// 	ft_putnbr_fd(current->value, 1);
+			// 	ft_putstr_fd("\n", 1);
+				if (value > current->prev->value)
+				{
+					// ft_putstr_fd("and is more than ", 1);
+					// ft_putnbr_fd(current->prev->value, 1);
+					// ft_putstr_fd("\n", 1);
+					got_pos = true;
+				}
+			}
+			*len = *len + 1;
+			if (got_pos == false)
+				*pos = *pos + 1;
+			current = current->next;
 		}
 	}
-	else
-	{
-		while (to_bottom >= 1)
-		{
-			rev_rotate(head);
-			to_bottom--;
-			write(1, "rrb\n", 4);
-			//ft_putstr_fd("B = ", 1);
-			//print_stack(*head);
-		}
-	}
-	// ft_putstr_fd("\nstack became :\n", 1);
-	// //print_stack(*head);
-	// ft_putstr_fd("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n", 1);
+	if (got_pos == false)
+		get_pos_alt_2_a(pos, head);
+	// ft_putstr_fd(" - pos.a is = ", 1);
+	// ft_putnbr_fd(*pos, 1);
+	// ft_putstr_fd(" - len.a is = ", 1);
+	// ft_putnbr_fd(*len, 1);
+	// ft_putstr_fd("\n", 1);
 }
-// 135 917 150 751 182 417 291 175 92 424 615 10
-// 00 245 486 393 572 957 519 225 648 642 605 786
-// 718 83 874 53 990 168 149 466 382 96 187 582 67
-// 100 561 476 535 328 11 848 857 538 711 404 747 2
-// 78 127 464 131 904 908 920 554 547 195 619 773 29
-// 470 344 626 321 564 837 422 332 657 152 988 949 971
-// 437 533 716 397 246 800
-// 794 514 569 270 31 670 474 868 846 932 930 861
-// 430 613 956 488 712 618 154 257
-// 135 917 150 751 182 417 291 175 92 424 615 1000 245 486 393 572 957 519 225 648 642 605 786 718 83 874 53 990 168 149 466 382 96 187 582 67 100 561 476 535 328 11 848 857 538 711 404 747 278 127 464 131 904 908 920 554 547 195 619 773 29 470 344 626 321 564 837 422 332 657 152 988 949 971 437 533 716 397 246 800 794 514 569 270 31 670 474 868 846 932 930 861 430 613 956 488 712 618 154 257
-// ``` &#8203;:citation[oaicite:0]{index=0}&#8203;
 
-// |291 182 150 135 917 751 417|
-// rb <-
-// rb <-
-// |150 135 917 751 417 291 182|
-// |175 150 135 917 751 417 291 182|
+void	get_pos_alt_2_a(int *pos, t_stacknode *head)
+{
+	t_stacknode	*current;
+	int			smallest;
+	int			index;
 
-// rrb ->
-// rrr ->
 
-// |291 182 175 150 135 917 751 417|
-// |257 291 182 175 150 135 917 751 417|
-
-// |404 397 393 382 344 332 328 321 291 278 270 257 246 245 225 195 187 182
-//  175 168 154 152 150 149 135 131 127 100 96 92 83 67 53 31 29 11 1000 990
-//   988 971 957 956 949 932 930 920 917 908 904 874 868 861 857 848 846 837
-//    800 794 786 773 751 747 718 716 712 711 670 657 648 642 626 619 618 615
-//     613 605 582 572 569 564 561 554 
-// 547 538 535 533 519 514 488 486 476 474 470 466 464 437 430 424 422 417|
-
-// |712 711 670 657 648 642 626 619 618 615 613 605 582 572 569 564 561 554 
-// 547 538 535 533 519 514 488 486 476 474 470 466 464 437 430 424 422 417 404 
-// 397 393 382 344 332 328 321 291 278 270 257 246 245 225 195 187 182 175 168
-//  154 152 150 149 135 131 127 100 96 92 83 67 53 31 29 11 1000 990 988 971 957 
-//  956 949 932 930 920 917 908 904 874 868 861 857 848 846 837 800 794 786 773 751 747 718 716|
+	// ft_putstr_fd(" alt pos ", 1);
+	index = 0;
+	*pos = index;
+	if (head != NULL)
+	{
+		smallest = head->value; // = 3
+		current = head->next; // n(4) - |3 4 5 6 2|
+		while (current != head)
+		{
+			index++; // = 1
+			if (current->value < smallest) // 4 < 3 ? true
+			{
+				*pos = index; //pos = 1
+				smallest = current->value; // 2
+			}
+			current = current->next; // n(5) - |3 4 5 6 2|
+		}
+	}
+}
