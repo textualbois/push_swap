@@ -62,7 +62,7 @@ void	get_a_node_insert(int *pos, int *len, int value, t_stacknode *head)
 
 	got_pos = false;
 	*pos = 0;
-	*len = 0;
+	*len = -1;
 	current = head;
 	if (head != NULL)
 	{
@@ -90,11 +90,11 @@ void	get_a_node_insert(int *pos, int *len, int value, t_stacknode *head)
 		{
 			if (value < current->value)
 			{
-			// 	ft_putstr_fd("\nvalue = ", 1);
-			// 	ft_putnbr_fd(value, 1);
-			// 	ft_putstr_fd(" is less than ", 1);
-			// 	ft_putnbr_fd(current->value, 1);
-			// 	ft_putstr_fd("\n", 1);
+				// ft_putstr_fd("\nvalue = ", 1);
+				// ft_putnbr_fd(value, 1);
+				// ft_putstr_fd(" is less than ", 1);
+				// ft_putnbr_fd(current->value, 1);
+				// ft_putstr_fd("\n", 1);
 				if (value > current->prev->value)
 				{
 					// ft_putstr_fd("and is more than ", 1);
