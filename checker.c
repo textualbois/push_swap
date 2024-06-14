@@ -2,10 +2,7 @@
 
 static void	checker_output(t_stacknode **stack_a, t_stacknode **stack_b, int output)
 {
-	// if (*stack_a)
-	// 	clear_list(*stack_a);
-	// if (*stack_b)
-	// 	clear_list(*stack_b);
+
 	(void) stack_a;
 	(void) stack_b;
 	if (output == OK)
@@ -26,13 +23,13 @@ static void	check_if_sorted(t_stacknode **stack_a, t_stacknode **stack_b)
 
 	if (*stack_b)
 		checker_output(stack_a, stack_b, KO);
-	temp = *stack_a;
-	while (temp->next)
+	temp = (*stack_a)->next;
+	if (temp->value < (*stack_a)->value)
+		checker_output(stack_a, stack_b, KO);
+	while (temp != *stack_a)
 	{
-		if (temp->value > temp->next->value)
-		{
+		if (temp->value < temp->prev->value)
 			checker_output(stack_a, stack_b, KO);
-		}
 		temp = temp->next;
 	}
 	checker_output(stack_a, stack_b, 0);
@@ -78,12 +75,15 @@ static void	read_exec_loop(t_stacknode **stack_a, t_stacknode **stack_b)
 		str = get_next_line(0);
 		if (!str)
 		{
+			ft_putendl_fd("input end", 1);
 			break ;
 		}
+		ft_putendl_fd(str, 1);
 		i = cmd_router(str, stack_a, stack_b);
 		free(str);
 		if (i == CMD_NOT_MATCHED)
 		{
+			ft_putstr_fd("didn't match a cmd\n", 1);
 			get_next_line(-1); //to clear get_next_line static variable
 			checker_output(stack_a, stack_b, ERROR);
 		}
