@@ -5,11 +5,19 @@
 # include <stdbool.h>
 # include "libft/libft.h"
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 100
+# endif
+
 # define other_task_present 0
 # define both_up 0
 # define both_down 1
 # define a_up_b_down 2
 # define a_down_b_up 3
+# define KO 2
+# define ERROR 1
+# define OK 0
+# define CMD_NOT_MATCHED 1
 
 typedef struct s_twoints{
 	int			a;
@@ -51,6 +59,9 @@ void		get_pos_alt_2_a(int *pos, t_stacknode *head);
 //fix_order.c
 void		reset_order_a(t_stacknode **head);
 void		reset_order_b(t_stacknode **head);
+
+//get_next_line.c
+char		*get_next_line(int fd);
 
 //clear.c
 t_stacknode	*clear_list(t_stacknode *head);
