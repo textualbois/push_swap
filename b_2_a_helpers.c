@@ -1,7 +1,5 @@
 #include "push_swap.h"
 
-#include "push_swap.h"
-
 int	calculate_moves_2_a(t_stacknode *b_node, t_stacknode *a_head, t_stacknode *b_head, int *moves)
 {
 	t_twoints	pos;
@@ -22,7 +20,7 @@ int	calculate_moves_2_a(t_stacknode *b_node, t_stacknode *a_head, t_stacknode *b
 		*moves = pos.a + len.b - pos.b + 1;
 		res = a_up_b_down;
 	}
-	if ((len.a - pos.a + 1 + pos.b) < *moves)
+	if ((len.a - pos.a + 1 + pos.b) <= *moves)
 	{
 		*moves = len.a - pos.a + 1 + pos.b;
 		res = a_down_b_up;
