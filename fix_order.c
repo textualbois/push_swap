@@ -47,7 +47,7 @@ static void	get_smallest_pos(int *to_top, int *to_bottom, t_stacknode *head)
 	}
 	if (current->value < min)
 	{
-		*to_top = count;
+		*to_top = count + 1;
 		count = 0;
 	}
 	while (current != head)
@@ -68,7 +68,7 @@ void	reset_order_a(t_stacknode **head)
 		get_smallest_pos(&to_top, &to_bottom, *head);
 		if (to_top <= to_bottom)
 		{
-			while (to_top >= 0)
+			while (to_top > 0)
 			{
 				rotate(head);
 				to_top--;
