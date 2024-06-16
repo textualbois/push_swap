@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/16 18:40:14 by isemin            #+#    #+#             */
+/*   Updated: 2024/06/16 18:40:14 by isemin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "push_swap.h"
 
 void	execute_push_swap(int *inputs)
@@ -8,64 +20,28 @@ void	execute_push_swap(int *inputs)
 
 	best_dir = 0;
 	a_head = init_stack_a(inputs);
-	// //print_stack(a_head);
 	b_head = NULL;
 	if (a_head != NULL)
 	{
-	//	//ft_putstr_fd("A = ", 1);
-		//print_stack(a_head);
-	//	//ft_putstr_fd("B = ", 1);
-		//print_stack(b_head);
-		//write(1, "\n\n", 2);
-	//	while (a_head != NULL)
 		while (ft_stacksize(a_head) > 3)
 		{
 			move_2_stack_b(&a_head, &b_head, best_dir);
-			// ft_putstr_fd("A = ", 1);
-			// print_stack(a_head);
-			// ft_putstr_fd("B = ", 1);
-			// print_stack(b_head);
 		}
 		three_sort(&a_head);
-		// ft_putstr_fd("A = ", 1);
-		// print_stack(a_head);
-		// ft_putstr_fd("B = ", 1);
-		// print_stack(b_head);
 	}
 	else
 		werror("Error\n", 2);
-	// ft_putstr_fd("\n\nSENDING BACK TO B\n\n", 1);
-	// ft_putstr_fd("\n\nSENDING BACK TO B\n\n", 1);
-	// ft_putstr_fd("\n\nSENDING BACK TO B\n\n", 1);
-	// ft_putstr_fd("\n\nSENDING BACK TO B\n\n", 1);
-	// ft_putstr_fd("\n\nSENDING BACK TO B\n\n", 1);
 	while (b_head != NULL)
 	{
 		move_2_stack_a(&a_head, &b_head, best_dir);
-		// ft_putstr_fd("A = ", 1);
-		// print_stack(a_head);
-		// ft_putstr_fd("B = ", 1);
-		// print_stack(b_head);
 	}
-	//write(1, "pa\n", 3);
-	// //print_stack(a_head);
 	reset_order_a(&a_head);
-	// ft_putstr_fd("A = ", 1);
-	// print_stack(a_head);
-	// ft_putstr_fd("B = ", 1);
-	// print_stack(b_head);
-	//clear_list(a_head);
 }
 
 void	move_2_stack_a_simple(t_stacknode **a_head, t_stacknode **b_head)
 {
 	push(b_head, a_head);
 	write(1, "pa\n", 3);
-//	//ft_putstr_fd("A = ", 1);
-	//print_stack(*a_head);
-//	//ft_putstr_fd("B = ", 1);
-	//print_stack(*b_head);
-	////print_stack(*a_head);
 }
 
 void	move_2_stack_a(t_stacknode **a_head, t_stacknode **b_head, int best_dir)
@@ -79,21 +55,11 @@ void	move_2_stack_a(t_stacknode **a_head, t_stacknode **b_head, int best_dir)
 	temp_dir = best_dir;
 	b_node = *b_head;
 	best_dir = calculate_moves_2_a(b_node, *a_head, *b_head, &min_moves);
-	// ft_putstr_fd("for value - ", 1);
-	// ft_putnbr_fd(b_node->value, 1);
-	// ft_putstr_fd(" temp moves are - ", 1);
-	// ft_putnbr_fd(min_moves, 1);
-	// ft_putstr_fd("\n", 1);
 	best_b_node = b_node;
 	b_node = b_node->next;
 	while (b_node != *b_head)
 	{
 		temp_dir = calculate_moves_2_a(b_node, *a_head, *b_head, &temp_moves);
-		// ft_putstr_fd("for value - ", 1);
-		// ft_putnbr_fd(b_node->value, 1);
-		// ft_putstr_fd(" temp moves are - ", 1);
-		// ft_putnbr_fd(temp_moves, 1);
-		// ft_putstr_fd("\n", 1);
 		if (temp_moves < min_moves)
 		{
 			best_b_node = b_node;
@@ -135,17 +101,11 @@ void	move_2_stack_b(t_stacknode **a_head, t_stacknode **b_head, int best_dir)
 	temp_dir = best_dir;
 	a_node = *a_head;
 	best_dir = calculate_moves(a_node, *a_head, *b_head, &min_moves);
-	// ft_putstr_fd("temp moves are - ", 1);
-	// ft_putnbr_fd(min_moves, 1);
-	// ft_putstr_fd("\n", 1);
 	best_a_node = a_node;
 	a_node = a_node->next;
 	while (a_node != *a_head)
 	{
 		temp_dir = calculate_moves(a_node, *a_head, *b_head, &temp_moves);
-		// ft_putstr_fd("temp moves are - ", 1);
-		// ft_putnbr_fd(temp_moves, 1);
-		// ft_putstr_fd("\n", 1);
 		if (temp_moves < min_moves)
 		{
 			best_a_node = a_node;
@@ -175,57 +135,3 @@ void	do_a_2_b_movement(t_stacknode **a_head, t_stacknode **b_head, t_stacknode *
 	push(a_head, b_head);
 	write(1, "pb\n", 3);
 }
-
-    // return (int_min(
-    //                 int_min(
-    //                         int_max(a_pos, b_pos),
-    //                         int_max(a_len - a_pos + 1, b_len - b_pos + 1)),
-    //                 int_min(
-    //                         a_pos + b_len - b_pos + 1,
-    //                         a_len - a_pos + 1 + b_pos)
-    //                 )
-    //         );
-
-
-// void	execute_push_swap(int *inputs)
-// {
-// 	t_stacknode	*a_head;
-// 	t_stacknode	*b_head;
-// 	int			best_dir;
-
-// 	best_dir = 0;
-// 	a_head = init_stack_a(inputs);
-// 	// //print_stack(a_head);
-// 	b_head = NULL;
-// 	if (a_head != NULL)
-// 	{
-// 	//	//ft_putstr_fd("A = ", 1);
-// 		//print_stack(a_head);
-// 	//	//ft_putstr_fd("B = ", 1);
-// 		//print_stack(b_head);
-// 		//write(1, "\n\n", 2);
-// 	//	while (a_head != NULL)
-// 		while (ft_stacksize(a_head) > 3)
-// 		{
-// 			move_2_stack_b(&a_head, &b_head, best_dir);
-// 		//	//ft_putstr_fd("A = ", 1);
-// 			//print_stack(a_head);
-// 		//	//ft_putstr_fd("B = ", 1);
-// 			//print_stack(b_head);
-// 		}
-// 		three_sort(&a_head);
-// 		reset_order(&b_head);
-// 	}
-// 	else
-// 		werror("Error\n", 2);
-// 	// ft_putstr_fd("\n\nSENDING BACK TO B\n\n", 1);
-// 	// ft_putstr_fd("\n\nSENDING BACK TO B\n\n", 1);
-// 	// ft_putstr_fd("\n\nSENDING BACK TO B\n\n", 1);
-// 	// ft_putstr_fd("\n\nSENDING BACK TO B\n\n", 1);
-// 	// ft_putstr_fd("\n\nSENDING BACK TO B\n\n", 1);
-// 	while (b_head != NULL)
-// 		move_2_stack_a(&a_head, &b_head);
-// 	//write(1, "pa\n", 3);
-// 	// //print_stack(a_head);
-// 	//clear_list(a_head);
-// }

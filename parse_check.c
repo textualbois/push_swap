@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_check.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/16 18:40:00 by isemin            #+#    #+#             */
+/*   Updated: 2024/06/16 18:40:07 by isemin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	is_int(char *str)
@@ -16,9 +28,9 @@ int	is_int(char *str)
 	return (1);
 }
 
-int *parse_check(int argc, char **argv)
+int	*parse_check(int argc, char **argv)
 {
-	int *res;
+	int	*res;
 
 	pre_parse(&argc, &argv);
 	if (argv == NULL)

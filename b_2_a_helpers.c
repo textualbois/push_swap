@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   b_2_a_helpers.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/16 18:36:39 by isemin            #+#    #+#             */
+/*   Updated: 2024/06/16 18:38:22 by isemin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	calculate_moves_2_a(t_stacknode *b_node, t_stacknode *a_head, t_stacknode *b_head, int *moves)
@@ -46,11 +58,6 @@ void	get_b_node_pos(int *pos, int *len, t_stacknode *node, t_stacknode *head)
 		*len = *len + 1;
 		current = current->next;
 	}
-	// ft_putstr_fd("for value = ", 1);
-	// ft_putnbr_fd(node->value, 1);
-	// ft_putstr_fd(" - pos.b is = ", 1);
-	// ft_putnbr_fd(*pos, 1);
-	// ft_putstr_fd("; ", 1);
 }
 
 void	get_a_node_insert(int *pos, int *len, int value, t_stacknode *head)
@@ -66,40 +73,19 @@ void	get_a_node_insert(int *pos, int *len, int value, t_stacknode *head)
 	{
 		if (value < current->value)
 		{
-			// ft_putstr_fd("\nvalue = ", 1);
-			// ft_putnbr_fd(value, 1);
-			// ft_putstr_fd(" is less than ", 1);
-			// ft_putnbr_fd(current->value, 1);
-			// ft_putstr_fd("\n", 1);
 			if (value > current->prev->value)
-			{
-				// ft_putstr_fd("and is more than ", 1);
-				// ft_putnbr_fd(current->prev->value, 1);
-				// ft_putstr_fd("\n", 1);
 				got_pos = true;
-			}
 		}
 		*len = *len + 1;
 		if (got_pos == false)
 			*pos = *pos + 1;
-
 		current = current->next;
 		while (current != head)
 		{
 			if (value < current->value)
 			{
-				// ft_putstr_fd("\nvalue = ", 1);
-				// ft_putnbr_fd(value, 1);
-				// ft_putstr_fd(" is less than ", 1);
-				// ft_putnbr_fd(current->value, 1);
-				// ft_putstr_fd("\n", 1);
 				if (value > current->prev->value)
-				{
-					// ft_putstr_fd("and is more than ", 1);
-					// ft_putnbr_fd(current->prev->value, 1);
-					// ft_putstr_fd("\n", 1);
 					got_pos = true;
-				}
 			}
 			*len = *len + 1;
 			if (got_pos == false)
@@ -109,11 +95,6 @@ void	get_a_node_insert(int *pos, int *len, int value, t_stacknode *head)
 	}
 	if (got_pos == false)
 		get_pos_alt_2_a(pos, head);
-	// ft_putstr_fd(" - pos.a is = ", 1);
-	// ft_putnbr_fd(*pos, 1);
-	// ft_putstr_fd(" - len.a is = ", 1);
-	// ft_putnbr_fd(*len, 1);
-	// ft_putstr_fd("\n", 1);
 }
 
 void	get_pos_alt_2_a(int *pos, t_stacknode *head)
@@ -122,23 +103,21 @@ void	get_pos_alt_2_a(int *pos, t_stacknode *head)
 	int			smallest;
 	int			index;
 
-
-	// ft_putstr_fd(" alt pos ", 1);
 	index = 0;
 	*pos = index;
 	if (head != NULL)
 	{
-		smallest = head->value; // = 3
-		current = head->next; // n(4) - |3 4 5 6 2|
+		smallest = head->value;
+		current = head->next;
 		while (current != head)
 		{
-			index++; // = 1
-			if (current->value < smallest) // 4 < 3 ? true
+			index++;
+			if (current->value < smallest)
 			{
-				*pos = index; //pos = 1
-				smallest = current->value; // 2
+				*pos = index;
+				smallest = current->value;
 			}
-			current = current->next; // n(5) - |3 4 5 6 2|
+			current = current->next;
 		}
 	}
 }

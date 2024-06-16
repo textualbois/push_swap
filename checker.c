@@ -2,7 +2,6 @@
 
 static void	checker_output(t_stacknode **stack_a, t_stacknode **stack_b, int output)
 {
-
 	(void) stack_a;
 	(void) stack_b;
 	if (output == OK)
@@ -74,11 +73,7 @@ static void	read_exec_loop(t_stacknode **stack_a, t_stacknode **stack_b)
 	{
 		str = get_next_line(0);
 		if (!str)
-		{
-			ft_putendl_fd("input end", 1);
 			break ;
-		}
-		ft_putendl_fd(str, 1);
 		i = cmd_router(str, stack_a, stack_b);
 		free(str);
 		if (i == CMD_NOT_MATCHED)

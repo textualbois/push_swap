@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   debug_helper.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/16 18:36:51 by isemin            #+#    #+#             */
+/*   Updated: 2024/06/16 18:38:24 by isemin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	print_stack(t_stacknode *head)
@@ -9,7 +21,6 @@ void	print_stack(t_stacknode *head)
 	else
 	{
 		temp = head;
-	//	write(1, "stack start\n|", ft_strlen("stack start\n|"));
 		write(1, "|", 1);
 		ft_putnbr_fd(temp->value, 1);
 		temp = temp->next;
@@ -20,6 +31,5 @@ void	print_stack(t_stacknode *head)
 			temp = temp->next;
 		}
 		write(1, "|\n", 2);
-	//	write(1, "stack end\n", ft_strlen("stack end\n"));
 	}
 }

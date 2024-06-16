@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   a_2_b_helpers.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/16 18:35:40 by isemin            #+#    #+#             */
+/*   Updated: 2024/06/16 18:36:14 by isemin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	calculate_moves(t_stacknode *a_node, t_stacknode *a_head, t_stacknode *b_head, int *moves)
@@ -46,10 +58,6 @@ void	get_a_node_pos(int *pos, int *len, t_stacknode *node, t_stacknode *head)
 		*len = *len + 1;
 		current = current->next;
 	}
-	// ft_putstr_fd("\nfor value = ", 1);
-	// ft_putnbr_fd(node->value, 1);
-	// ft_putstr_fd(" - pos.a is = ", 1);
-	// ft_putnbr_fd(*pos, 1);
 }
 
 void	get_b_node_insert(int *pos, int *len, int value, t_stacknode *head)
@@ -88,10 +96,6 @@ void	get_b_node_insert(int *pos, int *len, int value, t_stacknode *head)
 	}
 	if (got_pos == false)
 		get_pos_alt(pos, head);
-
-	// ft_putstr_fd(" - pos.b is = ", 1);
-	// ft_putnbr_fd(*pos, 1);
-	// ft_putstr_fd(" ", 1);
 }
 
 void	get_pos_alt(int *pos, t_stacknode *head)
@@ -104,17 +108,17 @@ void	get_pos_alt(int *pos, t_stacknode *head)
 	*pos = index;
 	if (head != NULL)
 	{
-		largest = head->value; // = 1
-		current = head->next; // n(6)
+		largest = head->value;
+		current = head->next;
 		while (current != head)
 		{
-			index++; // = 1
-			if (current->value > largest) // 6 > 1 ? true
+			index++;
+			if (current->value > largest)
 			{
-				*pos = index; //pos = 1
-				largest = current->value; // 6
+				*pos = index;
+				largest = current->value;
 			}
-			current = current->next; // n(3)
+			current = current->next;
 		}
 	}
 }

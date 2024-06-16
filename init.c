@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/16 18:37:45 by isemin            #+#    #+#             */
+/*   Updated: 2024/06/16 18:38:21 by isemin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-t_stacknode *init_stack_a(int *inputs)
+t_stacknode	*init_stack_a(int *inputs)
 {
-	t_stacknode *head;
-	t_stacknode *current;
-	t_stacknode *new;
-	int i;
+	t_stacknode	*head;
+	t_stacknode	*current;
+	t_stacknode	*new;
+	int			i;
 
 	head = create_new_node(inputs[1]);
 	if (head == NULL)

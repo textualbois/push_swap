@@ -6,7 +6,7 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:18:15 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/14 15:31:10 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/16 18:35:19 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*get_next_line(int fd)
 	char		*res;
 	ssize_t		r_status;
 
-	if (fd < 0 || fd > 1023)
+	if (fd < 0 || fd > 1023) /// clear static char etc
 		return (NULL);
 	r_status = 1;
 	nl_pos = NULL;

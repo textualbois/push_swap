@@ -32,14 +32,14 @@ char	**rm_el(char **arr, int index, int arr_len)
 	int		i;
 	char	**res;
 	int		j;
-	
+
 	res = malloc(sizeof(char *) * arr_len);
 	if (res == NULL)
 		return (werror("Error\n", 2));
 	i = 0;
 	j = 0;
 	while (i + 1 < arr_len)
-	{	
+	{
 		j = (i >= index);
 		res[i] = malloc(ft_strlen(arr[i + j] + 1));
 		if (res[i] == NULL)
