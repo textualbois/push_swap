@@ -6,11 +6,25 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:18:15 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/16 18:35:19 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/17 14:29:59 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	*clear_stash(char *stash[1024])
+{
+	int	i;
+
+	i = 0;
+	while (i < 1024)
+	{
+		if (stash[i])
+			free(stash[i]);
+		i++;
+	}
+	return (NULL);
+}
 
 static ssize_t	append_to_stash(char **stash, int fd)
 {
@@ -68,8 +82,8 @@ char	*get_next_line(int fd)
 	char		*res;
 	ssize_t		r_status;
 
-	if (fd < 0 || fd > 1023) /// clear static char etc
-		return (NULL);
+	if (fd < 0 || fd > 1023)
+		return (clear_stash(stash));
 	r_status = 1;
 	nl_pos = NULL;
 	if (stash[fd] != NULL)
@@ -85,3 +99,4 @@ char	*get_next_line(int fd)
 	res = pinch_line(stash, fd, nl_pos);
 	return (res);
 }
+
