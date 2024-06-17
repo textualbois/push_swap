@@ -6,13 +6,14 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:35:40 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/16 18:36:14 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/17 15:51:09 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	calculate_moves(t_stacknode *a_node, t_stacknode *a_head, t_stacknode *b_head, int *moves)
+int	calculate_moves(t_stacknode *a_node, t_stacknode *a_head,
+					t_stacknode *b_head, int *moves)
 {
 	t_twoints	pos;
 	t_twoints	len;
@@ -21,21 +22,21 @@ int	calculate_moves(t_stacknode *a_node, t_stacknode *a_head, t_stacknode *b_hea
 	get_a_node_pos(&(pos.a), &(len.a), a_node, a_head);
 	get_b_node_insert(&(pos.b), &(len.b), a_node->value, b_head);
 	*moves = int_max(pos.a, pos.b);
-	res = both_up;
+	res = BOTH_UP;
 	if (int_max(len.a - pos.a + 1, len.b - pos.b + 1) < *moves)
 	{
 		*moves = int_max(len.a - pos.a + 1, len.b - pos.b + 1);
-		res = both_down;
+		res = BOTH_DOWN;
 	}
 	if ((pos.a + len.b - pos.b + 1) < *moves)
 	{
 		*moves = pos.a + len.b - pos.b + 1;
-		res = a_up_b_down;
+		res = A_UP_B_DOWN;
 	}
 	if ((len.a - pos.a + 1 + pos.b) < *moves)
 	{
 		*moves = len.a - pos.a + 1 + pos.b;
-		res = a_down_b_up;
+		res = A_DOWN_B_UP;
 	}
 	return (res);
 }
@@ -60,7 +61,8 @@ void	get_a_node_pos(int *pos, int *len, t_stacknode *node, t_stacknode *head)
 	}
 }
 
-void	get_b_node_insert(int *pos, int *len, int value, t_stacknode *head)
+void	get_b_node_insert(int *pos, int *len, \
+							int value, t_stacknode *head)
 {
 	t_stacknode	*current;
 	int			got_pos;
@@ -71,27 +73,15 @@ void	get_b_node_insert(int *pos, int *len, int value, t_stacknode *head)
 	current = head;
 	if (head != NULL)
 	{
-		if (value > current->value)
-		{
-			if (value < current->prev->value)
-				got_pos = true;
-		}
-		*len = *len + 1;
-		if (got_pos == false)
-			*pos = *pos + 1;
-
-		current = current->next;
+		check_b_insert_pos(value, current->value, \
+						current->prev->value, &got_pos);
+		current = increment_all(pos, len, got_pos, current);
 		while (current != head)
 		{
-			if (value > current->value)
-			{
-				if (value < current->prev->value)
-					got_pos = true;
-			}
-			*len = *len + 1;
-			if (got_pos == false)
-				*pos = *pos + 1;
-			current = current->next;
+			check_b_insert_pos(value, current->value, \
+						current->prev->value, &got_pos);
+			current = increment_all(pos, len, got_pos, \
+									current);
 		}
 	}
 	if (got_pos == false)

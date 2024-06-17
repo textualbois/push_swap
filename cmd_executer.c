@@ -6,7 +6,7 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:36:49 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/16 18:38:23 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/17 14:03:23 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	move_both_up(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos)
 	}
 }
 
-void	move_both_down(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos, t_twoints len)
+void	move_both_down(t_stacknode **a_head, t_stacknode **b_head, \
+						t_twoints pos, t_twoints len)
 {
 	while (pos.a != len.a && pos.b != len.b - 1)
 	{
@@ -60,7 +61,8 @@ void	move_both_down(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos, t
 	write(1, "rrr\n", 4);
 }
 
-void	move_a_up_b_down(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos, t_twoints len)
+void	move_a_up_b_down(t_stacknode **a_head, t_stacknode **b_head, \
+						t_twoints pos, t_twoints len)
 {
 	while (pos.a != 0)
 	{
@@ -76,7 +78,8 @@ void	move_a_up_b_down(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos,
 	}
 }
 
-void	move_a_down_b_up(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos, t_twoints len)
+void	move_a_down_b_up(t_stacknode **a_head, t_stacknode **b_head, \
+						t_twoints pos, t_twoints len)
 {
 	while (pos.a <= len.a)
 	{

@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/16 18:36:43 by isemin            #+#    #+#             */
+/*   Updated: 2024/06/17 14:41:23 by isemin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static void	checker_output(t_stacknode **stack_a, t_stacknode **stack_b, int output)
+static void	checker_output(t_stacknode **stack_a, \
+						t_stacknode **stack_b, int output)
 {
 	(void) stack_a;
 	(void) stack_b;
@@ -79,7 +92,7 @@ static void	read_exec_loop(t_stacknode **stack_a, t_stacknode **stack_b)
 		if (i == CMD_NOT_MATCHED)
 		{
 			ft_putstr_fd("didn't match a cmd\n", 1);
-			get_next_line(-1); //to clear get_next_line static variable
+			get_next_line(-1);
 			checker_output(stack_a, stack_b, ERROR);
 		}
 	}

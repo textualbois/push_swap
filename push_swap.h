@@ -6,7 +6,7 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:40:17 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/16 18:40:18 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/17 15:43:26 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@
 #  define BUFFER_SIZE 100
 # endif
 
-# define other_task_present 0
-# define both_up 0
-# define both_down 1
-# define a_up_b_down 2
-# define a_down_b_up 3
+# define BOTH_UP 0
+# define BOTH_DOWN 1
+# define A_UP_B_DOWN 2
+# define A_DOWN_B_UP 3
 # define KO 2
 # define ERROR 1
 # define OK 0
@@ -124,16 +123,19 @@ void		move_2_stack_a(t_stacknode **a_head, \
 							t_stacknode **b_head, int best_dir);
 void		do_b_2_a_movement(t_stacknode **a_head, t_stacknode **b_head, \
 								t_stacknode *a_node, int direction);
-void		move_2_stack_a_simple(t_stacknode **a_head, t_stacknode **b_head);
 
 //sort_3.c
 void		three_sort(t_stacknode **head);
 
 //cmd_executer.c
-void		move_both_up(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos);
-void		move_both_down(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos, t_twoints len);
-void		move_a_up_b_down(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos, t_twoints len);
-void		move_a_down_b_up(t_stacknode **a_head, t_stacknode **b_head, t_twoints pos, t_twoints len);
+void		move_both_up(t_stacknode **a_head, t_stacknode **b_head, \
+							t_twoints pos);
+void		move_both_down(t_stacknode **a_head, t_stacknode **b_head, \
+							t_twoints pos, t_twoints len);
+void		move_a_up_b_down(t_stacknode **a_head, t_stacknode **b_head, \
+							t_twoints pos, t_twoints len);
+void		move_a_down_b_up(t_stacknode **a_head, t_stacknode **b_head, \
+							t_twoints pos, t_twoints len);
 
 //wild_math.c
 int			int_min(int a, int b);
@@ -142,5 +144,12 @@ int			int_max(int a, int b);
 //debug_helper.c
 void		print_stack(t_stacknode *head);
 
+//a_2_b_b_2_a_helper_helpers.c
+void		check_b_insert_pos(int a_val, int val_bellow, \
+								int val_above, int *got_pos);
+void		check_a_insert_pos(int b_val, int val_bellow, \
+								int val_above, int *got_pos);
+t_stacknode	*increment_all(int *pos, int *len, int got_pos, \
+							t_stacknode *current_node);
 
 #endif

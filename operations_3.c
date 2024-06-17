@@ -6,11 +6,33 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:39:21 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/16 18:39:46 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/17 15:54:11 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	re_link(t_stacknode *new_head, t_stacknode *new_tail, \
+					t_stacknode **src)
+{
+	if (new_head == new_tail)
+	{
+		if (new_head == *src)
+			*src = NULL;
+		else
+		{
+			make_circular(new_head, new_tail);
+			*src = new_head;
+			(*src)->is_top = 1;
+		}
+	}
+	else
+	{
+		make_circular(new_head, new_tail);
+		*src = new_head;
+		(*src)->is_top = 1;
+	}
+}
 
 void	push(t_stacknode **src, t_stacknode **dst)
 {
@@ -19,7 +41,6 @@ void	push(t_stacknode **src, t_stacknode **dst)
 
 	src_new_head = (*src)->next;
 	src_new_tail = (*src)->prev;
-
 	src_new_head->is_top = 1;
 	if (*dst != NULL)
 	{
@@ -29,23 +50,7 @@ void	push(t_stacknode **src, t_stacknode **dst)
 	else
 		make_circular(*src, *src);
 	*dst = *src;
-	if (src_new_head == src_new_tail)
-	{
-		if (src_new_head == *src)
-			*src = NULL;
-		else
-		{
-			make_circular(src_new_head, src_new_tail);
-			*src = src_new_head;
-			(*src)->is_top = 1;
-		}
-	}
-	else
-	{
-		make_circular(src_new_head, src_new_tail);
-		*src = src_new_head;
-		(*src)->is_top = 1;
-	}
+	re_link(src_new_head, src_new_tail, src);
 }
 
 void	swap_top(t_stacknode **head)

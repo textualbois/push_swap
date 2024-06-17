@@ -1,7 +1,8 @@
 NAME = push_swap
 BONUS_NAME = checker
 
-SRCS = a_2_b_helpers.c arr_utils.c b_2_a_helpers.c clear.c cmd_executer.c error.c fix_order.c init.c list_utils.c \
+SRCS = a_2_b_b_2_a_helper_helper.c a_2_b_helpers.c arr_utils.c b_2_a_helpers.c \
+		clear.c cmd_executer.c error.c fix_order.c init.c list_utils.c \
 		operations_1.c operations_2.c operations_3.c operations_4.c parse_check.c parse_check_2.c \
 		push_swap.c sort_3.c wild_math.c debug_helper.c
 B_SRCS = $(SRCS) checker.c get_next_line.c

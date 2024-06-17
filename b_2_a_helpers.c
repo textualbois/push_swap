@@ -6,13 +6,14 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:36:39 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/16 18:38:22 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/17 15:51:20 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	calculate_moves_2_a(t_stacknode *b_node, t_stacknode *a_head, t_stacknode *b_head, int *moves)
+int	calculate_moves_2_a(t_stacknode *b_node, t_stacknode *a_head, \
+						t_stacknode *b_head, int *moves)
 {
 	t_twoints	pos;
 	t_twoints	len;
@@ -21,21 +22,21 @@ int	calculate_moves_2_a(t_stacknode *b_node, t_stacknode *a_head, t_stacknode *b
 	get_b_node_pos(&(pos.b), &(len.b), b_node, b_head);
 	get_a_node_insert(&(pos.a), &(len.a), b_node->value, a_head);
 	*moves = int_max(pos.a, pos.b);
-	res = both_up;
+	res = BOTH_UP;
 	if (int_max(len.a - pos.a + 1, len.b - pos.b + 1) < *moves)
 	{
 		*moves = int_max(len.a - pos.a + 1, len.b - pos.b + 1);
-		res = both_down;
+		res = BOTH_DOWN;
 	}
 	if ((pos.a + len.b - pos.b + 1) < *moves)
 	{
 		*moves = pos.a + len.b - pos.b + 1;
-		res = a_up_b_down;
+		res = A_UP_B_DOWN;
 	}
 	if ((len.a - pos.a + 1 + pos.b) <= *moves)
 	{
 		*moves = len.a - pos.a + 1 + pos.b;
-		res = a_down_b_up;
+		res = A_DOWN_B_UP;
 	}
 	return (res);
 }
@@ -71,26 +72,15 @@ void	get_a_node_insert(int *pos, int *len, int value, t_stacknode *head)
 	current = head;
 	if (head != NULL)
 	{
-		if (value < current->value)
-		{
-			if (value > current->prev->value)
-				got_pos = true;
-		}
-		*len = *len + 1;
-		if (got_pos == false)
-			*pos = *pos + 1;
-		current = current->next;
+		check_a_insert_pos(value, current->value, \
+						current->prev->value, &got_pos);
+		current = increment_all(pos, len, got_pos, current);
 		while (current != head)
 		{
-			if (value < current->value)
-			{
-				if (value > current->prev->value)
-					got_pos = true;
-			}
-			*len = *len + 1;
-			if (got_pos == false)
-				*pos = *pos + 1;
-			current = current->next;
+			check_a_insert_pos(value, current->value, \
+						current->prev->value, &got_pos);
+			current = increment_all(pos, len, got_pos, \
+									current);
 		}
 	}
 	if (got_pos == false)

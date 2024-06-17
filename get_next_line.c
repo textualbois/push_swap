@@ -6,7 +6,7 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:18:15 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/17 14:29:59 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/17 14:31:48 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,3 @@ char	*get_next_line(int fd)
 	res = pinch_line(stash, fd, nl_pos);
 	return (res);
 }
-
