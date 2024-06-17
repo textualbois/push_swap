@@ -6,7 +6,7 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:40:14 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/17 15:54:53 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/17 17:08:58 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ void	execute_push_swap(int *inputs)
 		while (ft_stacksize(a_head) > 3)
 			move_2_stack_b(&a_head, &b_head, best_dir);
 		three_sort(&a_head);
+		while (b_head != NULL)
+			move_2_stack_a(&a_head, &b_head, best_dir);
+		reset_order_a(&a_head);
+		clear_list(a_head);
 	}
 	else
 		werror("Error\n", 2);
-	while (b_head != NULL)
-		move_2_stack_a(&a_head, &b_head, best_dir);
-	reset_order_a(&a_head);
 }
 
 void	move_2_stack_a(t_stacknode **a_head, t_stacknode **b_head, int best_dir)
