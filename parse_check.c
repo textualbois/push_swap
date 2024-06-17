@@ -6,7 +6,7 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:40:00 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/16 18:40:07 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/17 17:22:57 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,29 @@ int	is_int(char *str)
 
 int	*parse_check(int argc, char **argv)
 {
-	int	*res;
+	int		*res;
+	char	**temp;
 
-	pre_parse(&argc, &argv);
-	if (argv == NULL)
-		return (werror("Error\n", 2));
-	res = transform(argc, argv);
-	clear_arr(argv);
+	temp = NULL;
+	pre_parse(&argc, &argv, &temp);
+	if (temp == NULL)
+		return (NULL);
+	res = transform(argc, temp);
+	clear_arr(temp);
 	return (res);
 }
 
-void	pre_parse(int *argc, char ***argv)
+void	pre_parse(int *argc, char ***argv, char ***temp)
 {
 	if (*argc > 2)
-		*argv = rm_el(*argv, 0, *argc);
+		*temp = rm_el(*argv, 0, *argc);
 	else if (*argc == 2)
 	{
-		*argv = ft_split((*argv)[1], ' ');
-		*argc = ft_arrlen(*argv) + 1;
+		*temp = ft_split((*argv)[1], ' ');
+		*argc = ft_arrlen(*temp) + 1;
 	}
 	else
-		*argv = NULL;
+		*temp = NULL;
 }
 
 int	*transform(int argc, char **arr)
@@ -69,7 +71,6 @@ int	*transform(int argc, char **arr)
 			res[i + 1] = ft_atoi(arr[i]);
 		else
 		{
-			werror("Error\n", 2);
 			free(res);
 			return (NULL);
 		}

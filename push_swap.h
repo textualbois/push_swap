@@ -6,7 +6,7 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:40:17 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/17 15:43:26 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/17 16:35:13 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void		rev_rr(t_stacknode **head_a, t_stacknode **head_b);
 //parse_check.c
 int			is_int(char *str);
 int			*parse_check(int argc, char **argv);
-void		pre_parse(int *argc, char ***argv);
+void		pre_parse(int *argc, char ***argv, char ***temp);
 int			*transform(int argc, char **arr);
 
 //parse_check_2.c
