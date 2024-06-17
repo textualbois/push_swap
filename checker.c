@@ -6,7 +6,7 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:36:43 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/17 14:41:23 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/17 17:17:55 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	checker_output(t_stacknode **stack_a, \
 		exit(0);
 	}
 	if (output == ERROR)
-		ft_putstr_fd("Error\n", 1);
+		ft_putstr_fd("Error\n", 2);
 	else if (output == KO)
 		ft_putstr_fd("KO\n", 1);
 	exit(1);
