@@ -6,7 +6,7 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:39:21 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/17 15:54:11 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/18 12:52:04 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,21 @@ void	push(t_stacknode **src, t_stacknode **dst)
 	t_stacknode	*src_new_head;
 	t_stacknode	*src_new_tail;
 
-	src_new_head = (*src)->next;
-	src_new_tail = (*src)->prev;
-	src_new_head->is_top = 1;
-	if (*dst != NULL)
+	if (*src != NULL)
 	{
-		(*dst)->is_top = 0;
-		insert_before(*dst, *src);
+		src_new_head = (*src)->next;
+		src_new_tail = (*src)->prev;
+		src_new_head->is_top = 1;
+		if (*dst != NULL)
+		{
+			(*dst)->is_top = 0;
+			insert_before(*dst, *src);
+		}
+		else
+			make_circular(*src, *src);
+		*dst = *src;
+		re_link(src_new_head, src_new_tail, src);
 	}
-	else
-		make_circular(*src, *src);
-	*dst = *src;
-	re_link(src_new_head, src_new_tail, src);
 }
 
 void	swap_top(t_stacknode **head)
@@ -78,18 +81,24 @@ void	rotate(t_stacknode **head)
 {
 	t_stacknode	*first;
 
-	first = *head;
-	first->is_top = 0;
-	first->next->is_top = 1;
-	*head = first->next;
+	if (head != NULL && *head != NULL)
+	{
+		first = *head;
+		first->is_top = 0;
+		first->next->is_top = 1;
+		*head = first->next;
+	}
 }
 
 void	rev_rotate(t_stacknode **head)
 {
 	t_stacknode	*first;
 
-	first = *head;
-	first->is_top = 0;
-	first->prev->is_top = 1;
-	*head = first->prev;
+	if (head != NULL && *head != NULL)
+	{
+		first = *head;
+		first->is_top = 0;
+		first->prev->is_top = 1;
+		*head = first->prev;
+	}
 }
