@@ -6,7 +6,7 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:40:00 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/17 17:22:57 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/17 21:04:30 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	is_int(char *str)
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
+	if (str[i] < '0' || str[i] > '9')
+		return (0);
 	while (str[i] != '\0')
 	{
 		if (str[i] < '0' || str[i] > '9')
@@ -46,7 +48,7 @@ void	pre_parse(int *argc, char ***argv, char ***temp)
 {
 	if (*argc > 2)
 		*temp = rm_el(*argv, 0, *argc);
-	else if (*argc == 2)
+	else if (*argc == 2 && (*argv)[1][0] != '\0')
 	{
 		*temp = ft_split((*argv)[1], ' ');
 		*argc = ft_arrlen(*temp) + 1;
@@ -57,8 +59,9 @@ void	pre_parse(int *argc, char ***argv, char ***temp)
 
 int	*transform(int argc, char **arr)
 {
-	int	*res;
-	int	i;
+	int			*res;
+	int			i;
+	long long	temp;
 
 	res = malloc((argc) * sizeof(int));
 	if (res == NULL)
@@ -68,12 +71,15 @@ int	*transform(int argc, char **arr)
 	while (arr[i] != NULL)
 	{
 		if (is_int(arr[i]))
-			res[i + 1] = ft_atoi(arr[i]);
-		else
 		{
-			free(res);
-			return (NULL);
+			temp = ft_atol(arr[i]);
+			if (temp >= MIN_INT && temp <= MAX_INT)
+				res[i + 1] = (int)temp;
+			else
+				return (free_return(res));
 		}
+		else
+			return (free_return(res));
 		i++;
 	}
 	return (res);
