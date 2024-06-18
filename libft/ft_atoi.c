@@ -6,17 +6,17 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:01:36 by isemin            #+#    #+#             */
-/*   Updated: 2023/10/15 21:46:55 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/17 20:45:05 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+long long	ft_atol(const char *nptr)
 {
-	int	i;
-	int	res;
-	int	sign;
+	int			i;
+	long long	res;
+	long long	sign;
 
 	res = 0;
 	i = 0;
