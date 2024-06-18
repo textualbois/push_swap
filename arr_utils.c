@@ -6,7 +6,7 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:36:33 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/17 16:52:36 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/17 19:04:07 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ char	**rm_el(char **arr, int index, int arr_len)
 	while (i + 1 < arr_len)
 	{
 		j = (i >= index);
-		res[i] = malloc(ft_strlen(arr[i + j]));
+		res[i] = malloc(ft_strlen(arr[i + j]) + 1);
 		if (res[i] == NULL)
 		{
 			res = clear_arr(res);
 			return (NULL);
 		}
-		ft_strlcpy(res[i], arr[i + j], ft_strlen(arr[i + j]));
+		ft_strlcpy(res[i], arr[i + j], ft_strlen(arr[i + j]) + 1);
 		i++;
 	}
 	res[i] = NULL;
