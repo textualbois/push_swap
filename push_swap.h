@@ -6,7 +6,7 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:40:17 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/17 16:35:13 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/17 21:00:28 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@
 # define ERROR 1
 # define OK 0
 # define CMD_NOT_MATCHED 1
+# ifndef MIN_INT
+#  define MIN_INT -2147483648
+# endif
+# ifndef MAX_INT
+#  define MAX_INT 2147483647
+# endif
 
 typedef struct s_twoints{
 	int			a;
@@ -76,6 +82,7 @@ char		*get_next_line(int fd);
 
 //clear.c
 t_stacknode	*clear_list(t_stacknode *head);
+void		*free_return(void *arg);
 
 //error.c
 void		*werror(char *msg, int fd);
