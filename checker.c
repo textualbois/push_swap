@@ -6,7 +6,7 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:36:43 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/17 17:17:55 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/18 13:05:46 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ static void	read_exec_loop(t_stacknode **stack_a, t_stacknode **stack_b)
 		free(str);
 		if (i == CMD_NOT_MATCHED)
 		{
-			ft_putstr_fd("didn't match a cmd\n", 1);
 			get_next_line(-1);
 			checker_output(stack_a, stack_b, ERROR);
 		}
@@ -115,4 +114,6 @@ int	main(int argc, char **argv)
 		read_exec_loop(&stack_a, &stack_b);
 		check_if_sorted(&stack_a, &stack_b);
 	}
+	else
+		werror("Error\n", 2);
 }
