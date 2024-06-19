@@ -6,7 +6,7 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:36:43 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/18 13:05:46 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/18 13:25:18 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,12 @@ static void	checker_output(t_stacknode **stack_a, \
 	exit(1);
 }
 
-static void	check_if_sorted(t_stacknode **stack_a, t_stacknode **stack_b)
+static void	check_if_ok(t_stacknode **stack_a, t_stacknode **stack_b)
 {
-	t_stacknode	*temp;
-
 	if (*stack_b)
 		checker_output(stack_a, stack_b, KO);
-	temp = (*stack_a)->next;
-	if (temp->value < (*stack_a)->value)
+	if (!check_if_sorted(stack_a))
 		checker_output(stack_a, stack_b, KO);
-	while (temp != *stack_a)
-	{
-		if (temp->value < temp->prev->value)
-			checker_output(stack_a, stack_b, KO);
-		temp = temp->next;
-	}
 	checker_output(stack_a, stack_b, 0);
 }
 
@@ -112,7 +103,7 @@ int	main(int argc, char **argv)
 		free(input);
 		stack_b = NULL;
 		read_exec_loop(&stack_a, &stack_b);
-		check_if_sorted(&stack_a, &stack_b);
+		check_if_ok(&stack_a, &stack_b);
 	}
 	else
 		werror("Error\n", 2);

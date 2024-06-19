@@ -6,7 +6,7 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:39:57 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/17 14:40:22 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/18 13:20:32 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,22 @@ int	no_duplicates(int *arr)
 			j++;
 		}
 		i++;
+	}
+	return (1);
+}
+
+int	check_if_sorted(t_stacknode **stack_a)
+{
+	t_stacknode	*temp;
+
+	temp = (*stack_a)->next;
+	if (temp->value < (*stack_a)->value)
+		return (0);
+	while (temp != *stack_a)
+	{
+		if (temp->value < temp->prev->value)
+			return (0);
+		temp = temp->next;
 	}
 	return (1);
 }
