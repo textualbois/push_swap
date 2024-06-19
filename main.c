@@ -6,7 +6,7 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:38:37 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/17 17:19:42 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/19 15:16:05 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int	main(int argc, char **argv)
 			free(input);
 		}
 		else
+		{
 			werror("Error\n", 2);
+			return (1);
+		}
 	}
+	return (0);
 }

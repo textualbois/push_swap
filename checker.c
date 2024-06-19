@@ -6,17 +6,14 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:36:43 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/18 13:25:18 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/19 15:25:40 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	checker_output(t_stacknode **stack_a, \
-						t_stacknode **stack_b, int output)
+static void	checker_output(int output)
 {
-	(void) stack_a;
-	(void) stack_b;
 	if (output == OK)
 	{
 		ft_putstr_fd("OK\n", 1);
@@ -32,10 +29,10 @@ static void	checker_output(t_stacknode **stack_a, \
 static void	check_if_ok(t_stacknode **stack_a, t_stacknode **stack_b)
 {
 	if (*stack_b)
-		checker_output(stack_a, stack_b, KO);
+		checker_output(KO);
 	if (!check_if_sorted(stack_a))
-		checker_output(stack_a, stack_b, KO);
-	checker_output(stack_a, stack_b, 0);
+		checker_output(KO);
+	checker_output(OK);
 }
 
 static int	cmd_router(char *str, t_stacknode **stack_a, t_stacknode **stack_b)
@@ -83,7 +80,7 @@ static void	read_exec_loop(t_stacknode **stack_a, t_stacknode **stack_b)
 		if (i == CMD_NOT_MATCHED)
 		{
 			get_next_line(-1);
-			checker_output(stack_a, stack_b, ERROR);
+			checker_output(ERROR);
 		}
 	}
 }
