@@ -6,7 +6,7 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:38:37 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/19 15:16:05 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/19 23:14:29 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ int	main(int argc, char **argv)
 	if (argc > 1)
 	{
 		input = parse_check(argc, argv);
-		if (input != NULL && no_duplicates(input))
+		if (input != NULL)
 		{
-			execute_push_swap(input);
+			if(no_duplicates(input))
+				execute_push_swap(input);
 			free(input);
 		}
 		else
