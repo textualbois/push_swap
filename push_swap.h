@@ -6,7 +6,7 @@
 /*   By: isemin <isemin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:40:17 by isemin            #+#    #+#             */
-/*   Updated: 2024/06/18 13:20:50 by isemin           ###   ########.fr       */
+/*   Updated: 2024/06/19 15:02:32 by isemin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int			*transform(int argc, char **arr);
 
 //parse_check_2.c
 int			no_duplicates(int *arr);
-int	check_if_sorted(t_stacknode **stack_a);
+int			check_if_sorted(t_stacknode **stack_a);
 
 //push_swap.c
 void		execute_push_swap(int *inputs);
